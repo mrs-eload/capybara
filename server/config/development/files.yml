@@ -1,0 +1,3 @@
+upload:
+  tmp_directory: ${UPLOAD_DIRECTORY}
+  max_file_size: ${MAX_FILE_SIZE}

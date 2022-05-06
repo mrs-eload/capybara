@@ -1,2 +1,9 @@
-# capybara
-Keep track of your favorites repositories and articles
+# Capybara
+
+## Bookmarks library
+
+### Installation
+
+```bash
+$ npm install capybara
+```
