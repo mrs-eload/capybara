@@ -3,6 +3,7 @@ import {
   SwaggerCustomOptions,
   SwaggerModule,
 } from '@nestjs/swagger';
+import { ApiModule } from './api/api.module';
 
 export default function buildSwaggerDoc(app) {
   const main_apidoc = new DocumentBuilder()
@@ -23,10 +24,13 @@ export default function buildSwaggerDoc(app) {
         theme: 'monokai',
       },
     },
-    customSiteTitle: '3decision API',
+    customSiteTitle: 'Capybara API',
   };
 
-  const document = SwaggerModule.createDocument(app, main_apidoc, {});
+  const document = SwaggerModule.createDocument(app, main_apidoc, {
+    include: [ApiModule],
+    deepScanRoutes: true,
+  });
 
   SwaggerModule.setup('api/docs', app, document, customOptions);
 

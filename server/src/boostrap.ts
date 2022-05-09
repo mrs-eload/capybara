@@ -25,13 +25,10 @@ export async function bootstrap(
     bodyParser: true,
   };
 
-  const sslEnabled = config.main.ssl.enabled;
-  if (sslEnabled) {
-    appOptions.httpsOptions = {
-      key: fs.readFileSync(path.join(__dirname, './cert/ses-server.key')),
-      cert: fs.readFileSync(path.join(__dirname, './cert/ses-server.crt')),
-    };
-  }
+  appOptions.httpsOptions = {
+    key: fs.readFileSync(path.join(__dirname, './cert/ses-server.key')),
+    cert: fs.readFileSync(path.join(__dirname, './cert/ses-server.crt')),
+  };
   let app = await NestFactory.create<NestExpressApplication>(
     appModule,
     appOptions,

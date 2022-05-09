@@ -1,5 +1,5 @@
 main:
-  adapter: postgresql
+  adapter: postgres
   encoding: unicode
   database: ${DB_NAME}
   username: ${DB_USER}
