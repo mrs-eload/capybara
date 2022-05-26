@@ -6,11 +6,6 @@ import { Repository } from 'typeorm';
 
 @Injectable()
 export class UserService {
-  constructor(
-    @InjectRepository(User)
-    private usersRepository: Repository<User>,
-  ) {}
-
   async insert(user: InsertUserDTO): Promise<User> {
     const userEntity: User = User.create(user);
     await User.save(userEntity);

@@ -2,7 +2,6 @@ import {
   BaseEntity,
   Column,
   Entity,
-  Index,
   PrimaryGeneratedColumn,
   Unique,
 } from 'typeorm';
@@ -24,4 +23,14 @@ export class User extends BaseEntity {
 
   @Column()
   lastname: string;
+
+  static getByEmail(user: any): Promise<User> {
+    return User.findOne({
+      where: [{ email: user.email }],
+    });
+  }
+
+  static getById(id: number) {
+    return User.findOne(id);
+  }
 }

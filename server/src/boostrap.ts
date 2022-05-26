@@ -14,6 +14,7 @@ import { NestExpressApplication } from '@nestjs/platform-express';
 import { config } from '../config/configuration';
 import { secureHeaders } from './middleware/server_info.security.middleware';
 import buildSwaggerDoc from './swagger';
+import { sniff } from './middleware/sniff.middleware';
 
 export async function bootstrap(
   // TODO fix type overlap between in memory app module and app module
@@ -37,7 +38,7 @@ export async function bootstrap(
   try {
     app = configureApplication(app);
     buildSwaggerDoc(app);
-    await app.listen(3000);
+    await app.listen(6809);
   } catch (e) {
     logger.error(e.message);
     await app.close();
@@ -73,6 +74,7 @@ function configureApplication(
 
   // Secure headers
   app.use(secureHeaders);
+  app.use(sniff);
 
   app.useGlobalPipes(new ValidationPipe({ transform: true }));
 
